@@ -1,0 +1,8 @@
+echo "Do you want to check detailed memory usage? (y/n)"
+read response
+
+if [ "$response" = "y" ]; then
+    htop
+else
+    free -m
+fi

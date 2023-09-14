@@ -1,0 +1,2 @@
+# switch to a cluster context based on autocomplete input from script above
+kubectx $1
