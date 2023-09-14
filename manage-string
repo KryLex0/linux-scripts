@@ -1,0 +1,59 @@
+response=$1
+if [ "$response" == "" ]; then
+    echo "Commands: "
+    echo "  write: insert a line in a file"
+    echo "  rm: delete a line from a file"
+
+    echo "Enter your choice: "
+    read response
+    while [ $response != "write" ] && [ $response != "rm" ]
+    do
+        echo "Invalid choice"
+        echo "Enter your choice: "
+        read response
+    done
+fi
+
+
+stringData=$2
+filePath=$3
+
+if [ "$response" == "write" ]; then
+    echo "Script to insert a line in a file"
+
+    if [ "$stringData" == "" ] || [ "$filePath" == "" ]; then
+        echo "Enter the string to insert: "
+        read str
+
+        echo "Enter the file path: "
+        read path
+    else 
+        echo "Inserting line '$stringData' in $filePath"
+        str=$stringData
+        path=$filePath
+    fi
+
+
+    echo $str | sudo tee -a $path
+    cat $path
+elif [ "$response" == "rm" ]; then
+    echo "Script to delete a line from a file"
+
+    if [ "$stringData" == "" ] || [ "$filePath" == "" ]; then
+
+        echo "Enter the string to be searched: "
+        read search
+
+        echo "Enter the file name: "
+        read file
+    else 
+        echo "Deleting '$stringData' from $filePath"
+        search=$stringData
+        file=$filePath
+    fi
+
+
+    sudo grep -v "$search" $file > tmpFile && sudo mv tmpFile $file
+    cat $file
+
+fi

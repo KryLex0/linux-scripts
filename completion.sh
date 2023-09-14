@@ -10,4 +10,8 @@ for i in "${contexts[@]}"; do str_context="$str_context $i"; done
 
 complete -W "$str_context" set-context
 
+###############################################################
+#### Auto complete for manage-string (write/remove a line) ####
+###############################################################
 
+complete -W "rm write" manage-string
