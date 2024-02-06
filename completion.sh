@@ -15,3 +15,14 @@ complete -W "$str_context" set-context
 ###############################################################
 
 complete -W "rm write" manage-string
+
+###############################################################
+############## Auto complete for set-kubeconfig ###############
+###############################################################
+
+# list all kubeconfig starting by config_ files in ~/.kube/ and print them
+kubeconfigs=($(ls ~/.kube/config_*))
+str_kubeconfig=""
+for i in "${kubeconfigs[@]}"; do str_kubeconfig="$str_kubeconfig $i"; done
+
+complete -W "$str_kubeconfig" set-kubeconfig

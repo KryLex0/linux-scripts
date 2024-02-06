@@ -1,0 +1,5 @@
+fallocate -l 5G ~/swapfile
+
+sudo mkswap ~/swapfile -f && sudo swapon -p 5000 ~/swapfile
+# inverse
+# sudo swapoff ~/swapfile && sudo rm ~/swapfile
